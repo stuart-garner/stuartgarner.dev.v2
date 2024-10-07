@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const Header = () => {
-  //const { theme, toggleTheme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
   const [showScrollTop, setShowScrollTop] = useState(false);
   /*
    *
