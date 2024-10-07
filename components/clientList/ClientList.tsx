@@ -9,9 +9,10 @@ import { motion } from "framer-motion";
 import { RTNode } from "@prismicio/types";
 import { v4 as uuidv4 } from "uuid";
 import { PrismicNextImage } from "@prismicio/next";
+import { HomepageDocumentDataClientsItem } from "@sg/prismicio-types";
 
 type PropsType = {
-  clients: [] | [RTNode, ...RTNode[]] | null | undefined;
+  clients: HomepageDocumentDataClientsItem[] | null | undefined;
   colour: string;
 };
 

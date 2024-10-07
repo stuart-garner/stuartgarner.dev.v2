@@ -6,11 +6,15 @@ import BottomWave from "../waves/Bottom";
 import TopCurve from "../waves/TopCurve";
 import { motion } from "framer-motion";
 import ClientList from "../clientList/ClientList";
+import {
+  HomepageDocumentDataClientsItem,
+  HomepageDocumentDataTestimonialsItem,
+} from "@sg/prismicio-types";
 
 type PropType = {
   heading: [] | [RTNode, ...RTNode[]] | null | undefined;
-  content: [] | [RTNode, ...RTNode[]] | null | undefined;
-  clients: [] | [RTNode, ...RTNode[]] | null | undefined;
+  content: HomepageDocumentDataTestimonialsItem[] | null | undefined;
+  clients: HomepageDocumentDataClientsItem[] | null | undefined;
 };
 
 const HomePageTestimonials = (props: PropType) => {

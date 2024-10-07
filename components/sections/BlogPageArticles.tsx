@@ -9,7 +9,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faNewspaper } from "@fortawesome/free-solid-svg-icons";
 
 type PropType = {
-  heading: [] | [RTNode, ...RTNode[]] | null | undefined;
   content: Record<string, any>;
 };
 

@@ -24,7 +24,7 @@ export default function Home({ page, articles, blog }: Props) {
             body={page.data.about_me_body}
           />
           {process.env.NODE_ENV === "development" && (
-            <BlogPageArticles heading={blog.data.heading} content={articles} />
+            <BlogPageArticles content={articles} />
           )}
           <HomePagePortfolio
             heading={page.data.portfolio_heading}

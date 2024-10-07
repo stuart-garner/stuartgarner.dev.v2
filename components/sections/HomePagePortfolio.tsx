@@ -3,10 +3,11 @@ import { v4 as uuidv4 } from "uuid";
 import { RTNode } from "@prismicio/types";
 import TopWave from "../waves/Top";
 import PortfolioProject from "./PortfolioProject";
+import { HomepageDocumentDataPortfolioItem } from "@sg/prismicio-types";
 
 type PropType = {
   heading: [] | [RTNode, ...RTNode[]] | null | undefined;
-  content: [] | [RTNode, ...RTNode[]] | null | undefined;
+  content: HomepageDocumentDataPortfolioItem[] | null | undefined;
 };
 
 const HomePagePortfolio = (props: PropType) => {
