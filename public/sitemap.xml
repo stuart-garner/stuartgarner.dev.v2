@@ -1,0 +1,26 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>undefined/404.tsx</loc>
+    <changefreq>hourly</changefreq>
+  </url>
+  <url>
+    <loc>undefined/500.tsx</loc>
+    <changefreq>hourly</changefreq>
+  </url>
+  <url>
+    <loc>undefined/index.tsx</loc>
+    <changefreq>hourly</changefreq>
+  </url>
+  <url>
+    <loc>undefined/[uid].tsx</loc>
+    <changefreq>hourly</changefreq>
+  </url>
+  <url>
+    <loc>undefined/blog/index.tsx</loc>
+    <changefreq>hourly</changefreq>
+  </url>
+  <url>
+    <loc>undefined/blog/[uid].tsx</loc>
+    <changefreq>hourly</changefreq>
+  </url>
+</urlset>
