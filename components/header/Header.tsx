@@ -38,7 +38,7 @@ const Header = () => {
             [SG]
           </Link>
         </div>
-        {/*}  <button
+        <button
           onClick={toggleTheme}
           className="fixed top-5 right-5 p-2 bg-gray-200 dark:bg-gray-700 text-black dark:text-white rounded-xl "
         >
@@ -47,7 +47,7 @@ const Header = () => {
           ) : (
             <FontAwesomeIcon icon={faMoon} className="h-5 w-5" />
           )}
-        </button> */}
+        </button>
       </nav>
       <div
         onClick={() => topFunction()}

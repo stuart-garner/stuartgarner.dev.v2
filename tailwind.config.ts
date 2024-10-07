@@ -11,9 +11,9 @@ const config: Config = {
     extend: {
       backgroundImage: {
         "light-custom-gradient":
-          "linear-gradient(45deg, rgb(49, 45, 80) 0%, rgba(27, 120, 55, 1) 50%, rgba(246, 219, 16, 1) 100%)",
+          "linear-gradient(45deg, rgba(49, 45, 80, 1) 0%, rgba(27, 120, 55, 0.8) 50%, rgba(246, 219, 16, 0.75) 100%)",
         "dark-custom-gradient":
-          "linear-gradient(45deg, rgb(6, 4, 10) 21%, rgba(45, 26, 108, 1) 80%, rgba(78, 28, 124, 1) 100%)",
+          "linear-gradient(45deg, rgba(6, 4, 10,1) 21%, rgba(45, 26, 108, 0.8) 80%, rgba(78, 28, 124, 0.75) 100%)",
       },
       backgroundColor: {
         "light-article-background": "rgb(241, 245, 249)",

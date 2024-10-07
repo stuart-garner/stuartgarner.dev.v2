@@ -10,7 +10,7 @@
     @apply scroll-smooth;
   }
   body {
-    @apply bg-black;
+    background: url("/images/bg.jpg") repeat;
   }
   /*
   body::after {

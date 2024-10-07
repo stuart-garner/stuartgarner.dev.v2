@@ -1,12 +1,5 @@
-import Link from "next/link";
-import React, { ReactNode } from "react";
-import Facebook from "../logos/Facebook";
-import GitHub from "../logos/GitHub";
-import Instagram from "../logos/Instagram";
-import LinkedIn from "../logos/LinkedIn";
-import Twitter from "../logos/Twitter";
+import React from "react";
 import { motion } from "framer-motion";
-import { RTNode } from "@prismicio/types";
 import { v4 as uuidv4 } from "uuid";
 import { PrismicNextImage } from "@prismicio/next";
 import { HomepageDocumentDataClientsItem } from "@sg/prismicio-types";
@@ -23,7 +16,7 @@ type LogoPropTypes = {
 };
 
 const ClientList = (props: PropsType) => {
-  const { colour, clients } = props;
+  const { clients } = props;
   let delay = 0;
   const ClientLogo = (props: LogoPropTypes) => {
     const { href, label, item } = props;
