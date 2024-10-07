@@ -7,7 +7,10 @@ import { useEffect, useState } from "react";
 const Header = () => {
   const { theme, toggleTheme } = useTheme();
   const [showScrollTop, setShowScrollTop] = useState(false);
-
+  /*
+   *
+   *
+   * */
   useEffect(() => {
     const controlNavbar = () => {
       window.scrollY > 375 ? setShowScrollTop(true) : setShowScrollTop(false);
