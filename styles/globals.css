@@ -70,6 +70,10 @@
     @apply mx-auto px-10;
   }
 
+  .testimolials h2 {
+    @apply text-dark-default dark:text-dark-default;
+  }
+
   .button {
     @apply relative z-[1] inline-block w-fit overflow-hidden rounded-xl bg-amber-400 py-3 px-10 text-gray-900 transition-all duration-300;
     text-decoration: none;

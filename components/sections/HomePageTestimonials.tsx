@@ -27,7 +27,7 @@ const HomePageTestimonials = (props: PropType) => {
     >
       <TopCurve style="fill-light-portfolio-background dark:fill-dark-portfolio-background" />
 
-      <div className="container text-gray-100">
+      <div className="container testimolials text-gray-100">
         <PrismicRichText field={heading} />
         <div className="grid grid-cols-1 gap-20 lg:grid-cols-3">
           {content?.map((item: any, index: number) => {

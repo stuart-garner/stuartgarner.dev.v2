@@ -75,8 +75,9 @@ const PortfolioProject = (props: PropsType) => {
             {live_link.url && (
               <Link
                 className="button py-2 px-5"
-                href="/#about-section"
+                href={live_link.url}
                 aria-label="Live project"
+                target="_blank"
               >
                 Live
               </Link>
@@ -84,8 +85,9 @@ const PortfolioProject = (props: PropsType) => {
             {githublink.url && (
               <Link
                 className="button py-2 px-5"
-                href="/#about-section"
+                href={githublink.url}
                 aria-label="Project repo"
+                target="_blank"
               >
                 GitHub
               </Link>
