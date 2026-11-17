@@ -1,5 +1,3 @@
-import { REACT_LOADABLE_MANIFEST } from "next/dist/shared/lib/constants";
-
 type PropType = {
   style: string;
 };

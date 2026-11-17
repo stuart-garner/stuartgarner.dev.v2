@@ -1,0 +1,186 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --font-orbitron: var(--next-font-orbitron);
+}
+
+@theme {
+  --color-light-article-background: rgb(241, 245, 249);
+  --color-dark-article-background: rgb(14, 12, 18);
+  --color-light-about-background: rgb(255, 255, 255);
+  --color-dark-about-background: rgb(6, 4, 10);
+  --color-light-blog-background: rgb(255, 255, 255);
+  --color-dark-blog-background: rgb(6, 4, 10);
+  --color-light-portfolio-background: rgb(203, 213, 225);
+  --color-dark-portfolio-background: rgb(14, 12, 18);
+  --color-light-icons: #555;
+  --color-dark-icons: #fff;
+  --color-testimonial-highlight: rgba(246, 219, 16, 1);
+  --color-about-highlight: rgba(27, 120, 55, 1);
+  --color-light-default: #000;
+  --color-dark-default: #ddd;
+  --color-heading-highlight: #151515;
+  --color-code-background: rgb(40, 44, 52);
+
+  --color-gradient-light-from: rgba(49, 45, 80, 1);
+  --color-gradient-light-via: rgba(27, 120, 55, 0.8);
+  --color-gradient-light-to: rgba(246, 219, 16, 0.75);
+  --color-gradient-dark-from: rgba(6, 4, 10, 1);
+  --color-gradient-dark-via: rgba(45, 26, 108, 0.8);
+  --color-gradient-dark-to: rgba(78, 28, 124, 0.75);
+}
+
+@utility bg-light-custom-gradient {
+  background-image: linear-gradient(
+    45deg,
+    var(--color-gradient-light-from) 0%,
+    var(--color-gradient-light-via) 50%,
+    var(--color-gradient-light-to) 100%
+  );
+}
+
+@utility bg-dark-custom-gradient {
+  background-image: linear-gradient(
+    45deg,
+    var(--color-gradient-dark-from) 21%,
+    var(--color-gradient-dark-via) 80%,
+    var(--color-gradient-dark-to) 100%
+  );
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2.5rem;
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  body {
+    background: url("/images/bg.jpg") repeat;
+  }
+  /*
+  body::after {
+    @apply fixed bottom-5 left-5 z-50 rounded-xl bg-gray-900 p-[20px] text-gray-50  content-['sm'] md:content-['md'] lg:content-['lg'] xl:content-['xl'] 2xl:content-['2xl'];
+  }
+*/
+  section {
+    @apply relative pt-20 pb-20;
+  }
+
+  footer {
+    @apply pt-20 pb-5;
+  }
+
+  h1 {
+    @apply mb-5 text-6xl font-bold text-yellow-100 md:text-6xl lg:text-[78px] xl:text-8xl 2xl:text-[112px];
+  }
+
+  h2 {
+    @apply mb-10 text-4xl font-bold text-light-default dark:text-dark-default;
+  }
+
+  h3 {
+    @apply mb-5 text-4xl;
+  }
+
+  h4 {
+    @apply text-2xl font-bold;
+  }
+
+  h5 {
+    @apply text-sm font-bold;
+  }
+
+  p {
+    @apply mb-0 xl:text-xl;
+  }
+
+  img {
+    @apply h-auto w-full;
+  }
+
+  code {
+    @apply mb-0 w-screen rounded-lg bg-code-background p-2 text-sm text-gray-200;
+  }
+
+  li {
+    @apply py-0 xl:text-xl;
+  }
+
+  pre {
+    @apply m-0;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .testimolials h2 {
+    @apply text-dark-default dark:text-dark-default;
+  }
+
+  .button {
+    @apply relative z-[1] inline-block w-fit overflow-hidden rounded-xl bg-amber-400 px-10 py-3 text-gray-900 no-underline transition-all duration-300;
+  }
+
+  .button:hover {
+    @apply text-green-50;
+  }
+
+  .button::after {
+    @apply absolute top-0 left-0 z-[-1] h-full w-full origin-top-right scale-x-0 scale-y-100 rounded-xl bg-green-600 content-[''];
+    transition: transform 500ms cubic-bezier(0.86, 0, 0.07, 1);
+  }
+
+  .button:hover::after {
+    @apply origin-top-left scale-x-100 scale-y-100;
+  }
+
+  .button-secondary {
+    @apply border-2 border-amber-400 bg-transparent px-9.5 py-2.5 text-yellow-100;
+  }
+
+  .button-secondary:hover {
+    @apply text-gray-900;
+  }
+
+  .button-secondary::after {
+    @apply bg-amber-400;
+  }
+
+  .tech-stack-logo {
+    @apply h-full w-28 fill-gray-600 stroke-gray-600 md:w-[200px] xl:w-28;
+  }
+
+  .portfolio-tech-stack-logo {
+    @apply h-full w-auto fill-black stroke-black opacity-[50%] dark:fill-white;
+  }
+
+  .social-icons {
+    @apply h-[50px] w-auto;
+  }
+}
+
+@layer base {
+  h1 strong {
+    color: var(--color-heading-highlight);
+  }
+
+  strong {
+    @apply text-about-highlight dark:text-testimonial-highlight;
+  }
+
+  #testimonials-section strong {
+    @apply text-testimonial-highlight;
+  }
+
+  #about-section h2 {
+    margin-bottom: 0;
+  }
+}

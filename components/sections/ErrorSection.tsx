@@ -6,14 +6,13 @@ type PropType = {
   message: string;
 };
 
-const HomePagePortfolio = (props: PropType) => {
-  const { message, code } = props;
+const ErrorSection = ({ message, code }: PropType) => {
   return (
     <section
       id="page-not-found"
-      className="bg-custom-gradient flex h-screen w-full flex-col items-center justify-center"
+      className="flex h-screen w-full flex-col items-center justify-center"
     >
-      <h1 className="font-[Orbitron] text-[100px] text-gray-900 md:text-[150px]">
+      <h1 className="font-orbitron text-[100px] text-gray-900 md:text-[150px]">
         {code}
       </h1>
       <h1 className="text-center">{message}</h1>
@@ -32,4 +31,4 @@ const HomePagePortfolio = (props: PropType) => {
   );
 };
 
-export default HomePagePortfolio;
+export default ErrorSection;

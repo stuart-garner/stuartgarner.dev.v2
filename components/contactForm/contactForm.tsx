@@ -1,9 +1,10 @@
-import React from "react";
+"use client";
+
 import { useForm, ValidationError } from "@formspree/react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMailForward, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 function ContactForm() {
   const [state, handleSubmit] = useForm("xeqwqlpj");
@@ -42,7 +43,7 @@ function ContactForm() {
           id="email"
           type="email"
           name="email"
-          className=" rounded-xl bg-gray-50 p-5 text-gray-600"
+          className="rounded-xl bg-gray-50 p-5 text-gray-600"
           required
         />
         <ValidationError prefix="Email" field="email" errors={state.errors} />
@@ -53,7 +54,7 @@ function ContactForm() {
         <textarea
           id="message"
           name="message"
-          className="min-h-[200px] rounded-xl p-5 text-gray-600"
+          className="min-h-[200px] rounded-xl bg-gray-50 p-5 text-gray-600"
           required
         />
         <ValidationError

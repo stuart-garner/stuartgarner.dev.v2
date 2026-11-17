@@ -1,11 +1,13 @@
+"use client";
+
 import Link from "next/link";
-import React, { ReactNode } from "react";
+import type { ReactNode } from "react";
 import Facebook from "../logos/Facebook";
 import GitHub from "../logos/GitHub";
 import Instagram from "../logos/Instagram";
 import LinkedIn from "../logos/LinkedIn";
 import Twitter from "../logos/Twitter";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 type PropsType = {
   colour: string;

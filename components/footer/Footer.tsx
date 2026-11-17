@@ -1,12 +1,12 @@
-import ContactForm from "../contactForm";
-import SocialLinks from "../socialLinks";
-import TechStack from "../techStack";
+import ContactForm from "../contactForm/contactForm";
+import SocialLinks from "../socialLinks/SocialLinks";
+import TechStack from "../techStack/TechStack";
 
 const Footer = () => {
   return (
     <footer
       id="contact-form"
-      className="flex flex-col justify-center gap-10 bg-black text-gray-100 "
+      className="flex flex-col justify-center gap-10 bg-black text-gray-100"
     >
       <div className="container flex flex-col justify-start gap-20 xl:flex-row">
         <div className="flex basis-1/2 flex-col gap-5">

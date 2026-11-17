@@ -1,79 +1,60 @@
-import { PrismicNextImage } from "@prismicio/next";
-import { PrismicRichText } from "@prismicio/react";
-import { v4 as uuidv4 } from "uuid";
-import { RTNode } from "@prismicio/types";
+"use client";
+
+import Image from "next/image";
+import { motion } from "motion/react";
+import { clients, testimonials } from "@/content/home";
 import BottomWave from "../waves/Bottom";
 import TopCurve from "../waves/TopCurve";
-import { motion } from "framer-motion";
 import ClientList from "../clientList/ClientList";
-import {
-  HomepageDocumentDataClientsItem,
-  HomepageDocumentDataTestimonialsItem,
-} from "@sg/prismicio-types";
 
-type PropType = {
-  heading: [] | [RTNode, ...RTNode[]] | null | undefined;
-  content: HomepageDocumentDataTestimonialsItem[] | null | undefined;
-  clients: HomepageDocumentDataClientsItem[] | null | undefined;
-};
-
-const HomePageTestimonials = (props: PropType) => {
-  const { heading, content, clients } = props;
-  let delay: number = 0;
+const HomePageTestimonials = () => {
   return (
     <section
       id="testimonials-section"
-      className="bg-light-custom-gradient dark:bg-dark-custom-gradient pt-[150px] pb-[200px] lg:pb-[300px]"
+      className="bg-light-custom-gradient pt-[150px] pb-[200px] lg:pb-[300px] dark:bg-dark-custom-gradient"
     >
       <TopCurve style="fill-light-portfolio-background dark:fill-dark-portfolio-background" />
 
-      <div className="container testimolials text-gray-100">
-        <PrismicRichText field={heading} />
+      <div className="testimolials container text-gray-100">
+        <h2>Testimonials</h2>
         <div className="grid grid-cols-1 gap-20 lg:grid-cols-3">
-          {content?.map((item: any, index: number) => {
-            delay += 0.1;
+          {testimonials.map((testimonial, index) => {
+            const delay = (index + 1) * 0.1;
             return (
               <div
-                key={uuidv4()}
-                className="flex h-[100%] flex-col justify-between gap-10"
+                key={testimonial.name}
+                className="flex h-full flex-col justify-between gap-10"
               >
                 <motion.div
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{
-                    repeat: 0,
-                    duration: 0.5,
-                    delay: delay,
-                  }}
+                  transition={{ duration: 0.5, delay }}
                 >
-                  <PrismicRichText field={item.quote} />
+                  {testimonial.quote}
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{
-                    repeat: 0,
-                    duration: 0.5,
-                    delay: 0.25 + delay,
-                  }}
-                  className="flex flex-row justify-start gap-5 "
+                  transition={{ duration: 0.5, delay: 0.25 + delay }}
+                  className="flex flex-row justify-start gap-5"
                 >
                   <div className="w-[75px] grayscale">
-                    <PrismicNextImage
-                      field={item.profile_picture}
+                    <Image
+                      {...testimonial.picture}
+                      alt={testimonial.picture.alt}
                       className="rounded-xl"
                     />
                   </div>
                   <div className="mb-0 max-h-[75px] basis-3/4">
-                    <PrismicRichText field={item.name} />
-                    <PrismicRichText field={item.affiliation} />
+                    <h3>{testimonial.name}</h3>
+                    <p>{testimonial.affiliation}</p>
                   </div>
                 </motion.div>
               </div>
             );
           })}
         </div>
-        <ClientList clients={clients} colour="fill-white" />
+        <ClientList clients={clients} />
       </div>
       <BottomWave colour="fill-black" />
     </section>

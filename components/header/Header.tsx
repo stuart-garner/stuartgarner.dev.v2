@@ -1,11 +1,32 @@
+"use client";
+
 import { faArrowUp, faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useTheme } from "@sg/context/ThemeContext";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
+
+type Theme = "light" | "dark";
+
+const subscribeToTheme = (onChange: () => void) => {
+  const observer = new MutationObserver(onChange);
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+  return () => observer.disconnect();
+};
+
+const getTheme = (): Theme =>
+  document.documentElement.classList.contains("dark") ? "dark" : "light";
+
+const getServerTheme = (): Theme => "light";
 
 const Header = () => {
-  const { theme, toggleTheme } = useTheme();
+  const theme = useSyncExternalStore(
+    subscribeToTheme,
+    getTheme,
+    getServerTheme,
+  );
   const [showScrollTop, setShowScrollTop] = useState(false);
   /*
    *
@@ -13,12 +34,19 @@ const Header = () => {
    * */
   useEffect(() => {
     const controlNavbar = () => {
-      window.scrollY > 375 ? setShowScrollTop(true) : setShowScrollTop(false);
+      setShowScrollTop(window.scrollY > 375);
     };
 
     window.addEventListener("scroll", controlNavbar);
     return () => window.removeEventListener("scroll", controlNavbar);
   }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    document.documentElement.classList.remove(theme);
+    document.documentElement.classList.add(newTheme);
+    localStorage.setItem("theme", newTheme);
+  };
 
   const topFunction = () => {
     document.body.scrollTop = 0; // For Safari
@@ -27,31 +55,31 @@ const Header = () => {
 
   return (
     <header className="absolute z-50 h-auto w-full">
-      <nav className="flex items-center justify-between bg-transparent px-3 py-3 ">
+      <nav className="flex items-center justify-between bg-transparent px-3 py-3">
         <div>
           <Link
             href="/"
             scroll={false}
             aria-label="Link to home page"
-            className="font-[Orbitron] text-4xl text-white"
+            className="font-orbitron text-4xl text-white"
           >
             [SG]
           </Link>
         </div>
         <button
           onClick={toggleTheme}
-          className="fixed top-5 right-5 p-2 bg-gray-200 dark:bg-gray-700 text-black dark:text-white rounded-xl "
+          aria-label="Toggle dark mode"
+          className="fixed top-5 right-5 rounded-xl bg-gray-200 p-2 text-black dark:bg-gray-700 dark:text-white"
         >
-          {theme === "dark" ? (
-            <FontAwesomeIcon icon={faSun} className="h-5 w-5" />
-          ) : (
-            <FontAwesomeIcon icon={faMoon} className="h-5 w-5" />
-          )}
+          <FontAwesomeIcon
+            icon={theme === "dark" ? faSun : faMoon}
+            className="h-5 w-5"
+          />
         </button>
       </nav>
       <div
-        onClick={() => topFunction()}
-        className={`fixed bottom-5 right-5 cursor-pointer rounded-xl bg-slate-900 p-6 text-white transition-all duration-300 ${
+        onClick={topFunction}
+        className={`fixed right-5 cursor-pointer rounded-xl bg-slate-900 p-6 text-white transition-all duration-300 ${
           showScrollTop ? "bottom-5" : "bottom-[-100px]"
         }`}
       >

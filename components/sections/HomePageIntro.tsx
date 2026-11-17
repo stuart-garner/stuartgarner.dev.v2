@@ -1,51 +1,50 @@
-import { PrismicRichText } from "@prismicio/react";
+"use client";
+
 import Link from "next/link";
-import { RTNode } from "@prismicio/types";
-import BottomWave from "../waves/Bottom";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import { faArrowDown, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { intro, introSummary } from "@/content/home";
+import BottomWave from "../waves/Bottom";
 
-type PropType = {
-  heading: [] | [RTNode, ...RTNode[]] | null | undefined;
-};
-
-const HomePageIntro = (props: PropType) => {
-  const { heading } = props;
-
+const HomePageIntro = () => {
   return (
     <section
       id="intro-section"
-      className="bg-light-custom-gradient dark:bg-dark-custom-gradient h-screen min-h-[700px] md:min-h-[800px] xl:min-h-[600px] 2xl:max-h-[980px]"
+      className="h-screen min-h-[700px] bg-light-custom-gradient md:min-h-[800px] xl:min-h-[600px] 2xl:max-h-[980px] dark:bg-dark-custom-gradient"
     >
       <div className="container flex h-full items-center justify-between">
-        <div className="flex flex-col gap-10 ">
+        <div className="flex flex-col gap-10">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{
-              repeat: 0,
-              duration: 1,
-            }}
+            transition={{ duration: 1 }}
           >
-            <PrismicRichText field={heading} />
+            <h1>{intro}</h1>
+            <p className="max-w-3xl text-xl text-yellow-100 xl:text-2xl">
+              {introSummary}
+            </p>
           </motion.div>
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{
-              repeat: 0,
-              duration: 1,
-              delay: 1,
-            }}
+            transition={{ duration: 1, delay: 1 }}
+            className="flex flex-wrap gap-5"
           >
             <Link
               className="button flex items-center gap-5"
-              href="/#about-section"
+              href="/#contact-form"
               scroll={false}
-              aria-label="Learn More"
             >
-              Learn more
+              Get in touch
+              <FontAwesomeIcon icon={faEnvelope} className="h-5 w-5" />
+            </Link>
+            <Link
+              className="button button-secondary flex items-center gap-5"
+              href="/#portfolio-section"
+              scroll={false}
+            >
+              See my work
               <FontAwesomeIcon icon={faArrowDown} className="h-5 w-5" />
             </Link>
           </motion.div>

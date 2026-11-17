@@ -1,91 +1,57 @@
-import { PrismicRichText } from "@prismicio/react";
+"use client";
+
+import Image from "next/image";
 import Link from "next/link";
-import { RTNode } from "@prismicio/types";
-import { PrismicNextImage } from "@prismicio/next";
-import { motion } from "framer-motion";
-import PortfolioTechStack from "../portfolioTechStack";
+import { motion } from "motion/react";
+import type { Project } from "@/content/home";
+import PortfolioTechStack from "../portfolioTechStack/portfolioTechStack";
 
 type PropsType = {
-  title: [] | [RTNode, ...RTNode[]] | null | undefined;
-  description: [] | [RTNode, ...RTNode[]] | null | undefined;
-  githublink?: any;
-  live_link?: any;
-  screenshot: any;
-  next?: boolean;
-  typescript?: boolean;
-  tailwind?: boolean;
-  prismic?: boolean;
-  formspree?: boolean;
-  vercel?: boolean;
-  react?: boolean;
-  wordpress?: boolean;
-  php?: boolean;
-  sass?: boolean;
-  javascript?: boolean;
-  css?: boolean;
-  flow?: boolean;
-  html?: boolean;
-  mui?: boolean;
+  project: Project;
 };
 
-const PortfolioProject = (props: PropsType) => {
-  const {
-    title,
-    description,
-    screenshot,
-    githublink,
-    live_link,
-    typescript,
-    react,
-    tailwind,
-    wordpress,
-    php,
-    sass,
-    javascript,
-    css,
-    flow,
-    next,
-    html,
-    formspree,
-    mui,
-  } = props;
+const PortfolioProject = ({ project }: PropsType) => {
+  const { title, description, screenshot, tech, liveUrl, githubUrl } = project;
 
   return (
     <div className="flex flex-col gap-10 text-light-default dark:text-dark-default">
+      {screenshot && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <Image
+            {...screenshot}
+            alt={screenshot.alt}
+            className="mt-10 rounded-xl bg-light-custom-gradient lg:mt-0 lg:mb-0 dark:bg-dark-custom-gradient"
+          />
+        </motion.div>
+      )}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        transition={{ repeat: 0, duration: 0.5 }}
+        transition={{ duration: 0.5 }}
       >
-        <PrismicNextImage
-          field={screenshot}
-          className="bg-light-custom-gradient dark:bg-dark-custom-gradient mt-10 rounded-xl lg:mt-0 lg:mb-0 "
-        />
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ repeat: 0, duration: 0.5 }}
-      >
-        <PrismicRichText field={title} />
-        <PrismicRichText field={description} />
+        <h3>{title}</h3>
+        <div className="space-y-6">{description}</div>
 
-        {(live_link.url || githublink.url) && (
+        {(liveUrl || githubUrl) && (
           <div className="flex gap-2 pt-3">
-            {live_link.url && (
+            {liveUrl && (
               <Link
-                className="button py-2 px-5"
-                href={live_link.url}
+                className="button px-5 py-2"
+                href={liveUrl}
                 aria-label="Live project"
                 target="_blank"
               >
                 Live
               </Link>
             )}
-            {githublink.url && (
+            {githubUrl && (
               <Link
-                className="button py-2 px-5"
-                href={githublink.url}
+                className="button px-5 py-2"
+                href={githubUrl}
                 aria-label="Project repo"
                 target="_blank"
               >
@@ -94,21 +60,7 @@ const PortfolioProject = (props: PropsType) => {
             )}
           </div>
         )}
-        <PortfolioTechStack
-          react={react}
-          typescript={typescript}
-          tailwind={tailwind}
-          wordpress={wordpress}
-          php={php}
-          sass={sass}
-          javascript={javascript}
-          css={css}
-          flow={flow}
-          next={next}
-          html={html}
-          formspree={formspree}
-          mui={mui}
-        />
+        {tech.length > 0 && <PortfolioTechStack tech={tech} />}
       </motion.div>
     </div>
   );

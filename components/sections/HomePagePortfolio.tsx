@@ -1,29 +1,20 @@
-import { PrismicRichText } from "@prismicio/react";
-import { v4 as uuidv4 } from "uuid";
-import { RTNode } from "@prismicio/types";
+import { projects } from "@/content/home";
 import TopWave from "../waves/Top";
 import PortfolioProject from "./PortfolioProject";
-import { HomepageDocumentDataPortfolioItem } from "@sg/prismicio-types";
 
-type PropType = {
-  heading: [] | [RTNode, ...RTNode[]] | null | undefined;
-  content: HomepageDocumentDataPortfolioItem[] | null | undefined;
-};
-
-const HomePagePortfolio = (props: PropType) => {
-  const { heading, content } = props;
+const HomePagePortfolio = () => {
   return (
     <section
       id="portfolio-section"
-      className="bg-light-portfolio-background dark:bg-dark-portfolio-background  pt-[150px] md:pt-[150px] xl:pt-[230px] 2xl:pt-[300px]"
+      className="bg-light-portfolio-background pt-[150px] md:pt-[150px] xl:pt-[230px] 2xl:pt-[300px] dark:bg-dark-portfolio-background"
     >
       <TopWave colour="fill-light-blog-background dark:fill-dark-blog-background" />
       <div className="container">
-        <PrismicRichText field={heading} />
+        <h2>Portfolio</h2>
         <div className="grid grid-cols-1 gap-20 lg:grid-cols-2">
-          {content?.map((item: any, index: number) => {
-            return <PortfolioProject key={uuidv4()} {...item} />;
-          })}
+          {projects.map((project) => (
+            <PortfolioProject key={project.title} project={project} />
+          ))}
         </div>
       </div>
     </section>
